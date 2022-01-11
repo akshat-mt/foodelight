@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "foodDelight",
-    "slug": "foodDelight",
+    "name": "fooDelight",
+    "slug": "fooDelight",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
