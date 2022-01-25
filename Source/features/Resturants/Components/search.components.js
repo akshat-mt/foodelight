@@ -11,13 +11,15 @@ background-color : ${(props) => props.theme.colors.bg.primary};
 
 
 
-export default Search = () => {
+export default Search = ( {isFavouritesToggled , onFavouritesToggle} ) => {
     const {keyword , search} = useContext(LocationContext);
     const [searchKeyword , setsearchKeyword] = useState(keyword);
     
     return (
         <SearchContainer>
             <Searchbar placeholder='search location' 
+            icon={isFavouritesToggled ? "heart" : "heart-outline"}
+            onIconPress={onFavouritesToggle}
             value={searchKeyword}
             onSubmitEditing={() => {
                 search(searchKeyword)

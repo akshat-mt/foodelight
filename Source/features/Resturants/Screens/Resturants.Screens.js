@@ -9,7 +9,8 @@ import styled from 'styled-components/native';
 import { RestaurantsContext } from '../../../Services/Restaurats.context';
 import Search from '../Components/search.components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { FavouritesContext } from '../../../Services/favourites/favourites.context';
+import { FavouritesBar } from '../../../Components/favourites/favourites-bar.components';
 
 const ResturantInfo = styled.View`
 padding: ${(props) => props.theme.space[3]};
@@ -34,7 +35,9 @@ const RestaurantList = styled(FlatList).attrs({
 
 
 export const RestaurantsScreen = ({ navigation }) => {
-  const { restaurants, error, isLoading } = useContext(RestaurantsContext);
+  const {isLoading , restaurants} = useContext(RestaurantsContext);
+  const { favourites } = useContext(FavouritesContext); 
+  const [isToggle , setIsToggle] = useState(false);
   return (
     <Conatiner>
       {
@@ -49,7 +52,13 @@ export const RestaurantsScreen = ({ navigation }) => {
           </View>
         )
       }
-      <Search />
+      <Search 
+      isFavouritesToogled={isToggle}
+      onFavouritesToggle={()=>setIsToggle(!isToggle)}/>
+      {
+        isToggle &&   <FavouritesBar favourites={favourites} onNavigate={navigation.navigate} />
+      }
+
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
