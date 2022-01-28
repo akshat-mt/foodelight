@@ -6,9 +6,6 @@ import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from './Source/infrastructure/theme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { RestaurantsContextProvider } from "./Source/Services/Restaurats.context";
-import { LocationContextProvider } from './Source/Services/location/location.context';
-import { FavouritesContextProvider } from './Source/Services/favourites/favourites.context';
 import { Navigation } from './Source/infrastructure/Navigation';
 import { initializeApp } from 'firebase/app';
 import * as firebase from 'firebase/app';
@@ -87,13 +84,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <View style={styles.container}>
         <AuthenticationContextProvider>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+
+          <Navigation />
+
         </AuthenticationContextProvider>
       </View>
     </ThemeProvider>
