@@ -11,6 +11,8 @@ import Search from '../Components/search.components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FavouritesContext } from '../../../Services/favourites/favourites.context';
 import { FavouritesBar } from '../../../Components/favourites/favourites-bar.components';
+import { RestaurantList } from '../Components/restaurant-list-styles.components';
+import { FadeInView } from '../../../animations/fade.animation';
 
 const ResturantInfo = styled.View`
 padding: ${(props) => props.theme.space[3]};
@@ -26,12 +28,6 @@ flex : 1;
 const Conatiner = styled.View`
 flex : 1;
 `;
-
-const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
 
 
 export const RestaurantsScreen = ({ navigation }) => {
@@ -70,7 +66,9 @@ export const RestaurantsScreen = ({ navigation }) => {
               })
             }
             >
-              <ResturantsInfoCard restaurant={item} />
+              <FadeInView>
+                  <ResturantsInfoCard restaurant={item} />
+                </FadeInView>
             </TouchableOpacity>
           );
         }}
